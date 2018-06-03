@@ -13,11 +13,26 @@ import { Component } from '@angular/core';
                <button (click)="onClick($event)">Click Me</button><br>
                <input (keyup.enter) = "onEnter()" /><br>
                 <input #gmail (keyup.enter) = "onEnterhere(gmail.value)" /><br>
-                <input [(ngModel)] = "email" (keyup.enter)="onKeyUp()" />
+                <input [(ngModel)] = "email" (keyup.enter)="onKeyUp()" /> <br>
+
+                {{ course.title | uppercase }} <br/>
+                {{ course.students | number }} <br/>
+                {{ course.rating | number:'1.2-2'}} <br/>
+                {{ course.price | currency:'₹':true:'3.2-2' }} <br/>
+                {{ course.releaseDate | date:'shortDate' }} <br/>
+
 
              
 	`    //email is a template variable which refrences the input field 
-   //  [(ngModel)] means two way binding and is usable by importing formsModule in app.module.ts       
+   //  [(ngModel)] means two way binding and is usable by importing formsModule in app.module.ts   
+   /********************************************************
+   *   Types of Pipes:
+   *   1.)upperCase
+   *   2.)lowerCase
+   *   3.)decimal at line 20 means 1 digit number before decimal point and 2-2 means 2 digit after decimal
+   *   4.)currency 
+   *   5.)percent                                          
+   *******************************************************/
 })
 export class CoursesComponent{
       title = "List of courses";
@@ -37,5 +52,12 @@ export class CoursesComponent{
       }
      onKeyUp(){
       console.log(this.email); //Implementing 2 way binding
+     }
+     course={  //Pipes DEMO
+        title : "My Angular Practice",
+        rating : 4.98,
+        students : 3000,
+        price : 700,
+        releaseDate : new Date(2018, 3, 1)
      }
 }
